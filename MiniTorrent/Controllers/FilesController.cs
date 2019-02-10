@@ -22,9 +22,9 @@ namespace MiniTorrent.Controllers
             if(fileservice.Valid(user.username, user.password))
             {
                 fileservice.UpdateListFiles(user.username, user.password, user.lstFiles);
-
+                fileservice.SignIn(user.username, user.password);
                 // add user to database ! admin service 
-                    return Ok("Currect");
+                    return Ok(user.username + " Log in ");
             }
             else
             {
@@ -65,7 +65,8 @@ namespace MiniTorrent.Controllers
         [HttpPost]
         public IHttpActionResult SignOut([FromBody] User user)
         {
-          fileservice.
+            fileservice.SignOut(user.username, user.password);
+            return Ok(user.username + "Log Out");
         }
 
 
