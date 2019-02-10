@@ -124,15 +124,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\MeddleController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\File.cs" />
+    <Compile Include="Models\FileFinderObject.cs" />
+    <Compile Include="Models\MyFile.cs" />
     <Compile Include="Models\MiniTorrentContext.cs" />
     <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FileManagerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
