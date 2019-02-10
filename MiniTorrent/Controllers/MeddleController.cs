@@ -10,7 +10,7 @@ using System.Web.Http;
 
 namespace MiniTorrent.Controllers
 {
-    public class MeddleController //: ApiController
+    public class MeddleController : ApiController
     {
         Product[] products = new Product[]
         {

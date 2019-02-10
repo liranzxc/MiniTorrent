@@ -39,3 +39,7 @@ D:\MiniTorrent\MiniTorrent\MiniTorrent\bin\System.Web.Http.WebHost.xml
 D:\MiniTorrent\MiniTorrent\MiniTorrent\obj\Debug\MiniTorrent.csprojResolveAssemblyReference.cache
 D:\MiniTorrent\MiniTorrent\MiniTorrent\obj\Debug\MiniTorrent.dll
 D:\MiniTorrent\MiniTorrent\MiniTorrent\obj\Debug\MiniTorrent.pdb
+D:\MiniTorrent\MiniTorrent\MiniTorrent\bin\EntityFramework.dll
+D:\MiniTorrent\MiniTorrent\MiniTorrent\bin\EntityFramework.SqlServer.dll
+D:\MiniTorrent\MiniTorrent\MiniTorrent\bin\EntityFramework.xml
+D:\MiniTorrent\MiniTorrent\MiniTorrent\bin\EntityFramework.SqlServer.xml
