@@ -61,7 +61,12 @@ namespace MiniTorrent.Controllers
         }
 
 
-
+        [ActionName("SignOut")]
+        [HttpPost]
+        public IHttpActionResult SignOut([FromBody] User user)
+        {
+          fileservice.
+        }
 
 
     }
