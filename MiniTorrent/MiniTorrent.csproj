@@ -125,17 +125,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\AdminsController.cs" />
+=======
+    <Compile Include="Controllers\FilesController.cs" />
+>>>>>>> f116b575d1860b25ea1e0b395baddbf0fa8ee70a
     <Compile Include="Controllers\MeddleController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <Compile Include="Models\FileFinderObject.cs" />
+    <Compile Include="Models\MyFile.cs" />
+>>>>>>> f116b575d1860b25ea1e0b395baddbf0fa8ee70a
     <Compile Include="Models\MiniTorrentContext.cs" />
     <Compile Include="Models\MyFile.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\FileManagerService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

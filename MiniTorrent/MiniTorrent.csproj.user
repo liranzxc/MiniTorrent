@@ -10,6 +10,7 @@
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_DbContextDialogWidth>600</WebStackScaffolding_DbContextDialogWidth>
     <WebStackScaffolding_DbContextTypeFullName>MiniTorrent.Models.MiniTorrentContext</WebStackScaffolding_DbContextTypeFullName>
+<<<<<<< HEAD
     <LastActiveSolutionConfig>Debug|Any CPU</LastActiveSolutionConfig>
     <Use64BitIISExpress />
     <IISExpressSSLPort />
@@ -19,6 +20,8 @@
     <UseGlobalApplicationHostFile />
     <Controller_SelectedScaffolderID>ApiControllerWithContextScaffolder</Controller_SelectedScaffolderID>
     <Controller_SelectedScaffolderCategoryPath>root/Controller</Controller_SelectedScaffolderCategoryPath>
+=======
+>>>>>>> f116b575d1860b25ea1e0b395baddbf0fa8ee70a
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>
