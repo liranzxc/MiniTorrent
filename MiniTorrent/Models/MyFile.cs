@@ -5,7 +5,7 @@ using System.Web;
 
 namespace MiniTorrent.Models
 {
-    public class File
+    public class MyFile
     {
         public string name { get; set; }
         public double size { get; set; }
