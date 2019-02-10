@@ -9,5 +9,6 @@ namespace MiniTorrent.Models
     {
         public string name { get; set; }
         public double size { get; set; }
+        public string description { get; set; }
     }
 }
