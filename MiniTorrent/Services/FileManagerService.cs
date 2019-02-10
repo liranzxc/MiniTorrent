@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using MiniTorrent.Models;
+using MiniTorrent.DatabaseStub;
 
 namespace MiniTorrent.Services
 {
     public class FileManagerService
     {
+
+        private Stub stub = new Stub();
+
+
         internal bool Valid(string username, string password)
         {
             //throw new NotImplementedException();
+            List<User> lst = stub.getAllUser();
+            
             return true;
         }
         internal bool ChangeStatus(string username, string password , String status)
