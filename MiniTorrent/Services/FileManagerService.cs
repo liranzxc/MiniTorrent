@@ -1,37 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using MiniTorrent.Models;
-using MiniTorrent.DatabaseStub;
 
 namespace MiniTorrent.Services
 {
     public class FileManagerService
     {
 
-        private Stub stub = new Stub();
-
+        private MiniTorrentContext db = new MiniTorrentContext();
 
         internal bool Valid(string username, string password)
         {
             //throw new NotImplementedException();
-            List<User> lst = stub.getAllUser();
-            
-            return true;
-        }
-        internal bool ChangeStatus(string username, string password , String status)
-        {
-            //throw new NotImplementedException();
 
-            // Change Status userStatus
+            List<User> users = db.Users.ToList();
+
+            return (users
+                .Select(user => user.username == username && user.password == password)
+                .Count() > 0);      
+            
+        }
+
+
+        internal bool UpdateStatus(string username,string password, Boolean active)
+        {
+
+           User user = GetUser(username, password);
+           user.active = active;
+           db.Entry(user).State = EntityState.Modified;
+           db.SaveChanges();
+
             return true;
+          
+
         }
 
         internal bool SignIn(string username, string password)
         {
 
-            ChangeStatus(username, password, "ON");
+            UpdateStatus(username, password, true);
             //throw new NotImplementedException();
 
             // Change Status userStatus
@@ -42,23 +52,55 @@ namespace MiniTorrent.Services
         {
             //throw new NotImplementedException();
 
-            ChangeStatus(username, password, "OFF");
+            UpdateStatus(username, password, false);
 
             // Change Status userStatus
             return true;
         }
 
-        internal void UpdateListFiles(string username, string password, List<MyFile> lstFiles)
+        internal void UpdateListFiles(string username, string password, List<MyFile> lstFiles_new)
         {
+            User user = GetUser(username, password);
+
+            List<MyFile> files = db.Files.Where(file => file.IdUser == user.Id).ToList();
+
+            // delete all user files
+            files.ForEach(f => db.Files.Remove(f));
+
+            // add new files
+
+            lstFiles_new.ForEach(f =>
+            {
+                f.IdUser = user.Id;
+
+                db.Files.Add(f);
+
+
+            });
+
+
+            db.SaveChanges();
+
+
+
+
+
             //throw new NotImplementedException();
         }
 
-        // return how many file owers and size 
-        internal FileFinderObject FindFile(MyFile file)
+        private User GetUser(string username , string password)
         {
-           // throw new NotImplementedException();
+            return db.Users.ToList().Single(user => user.username == username && user.password == password);
+        }
 
-            return  new FileFinderObject { size = 45, ManyUser = 34 };
+        // return how many file owers and size 
+        internal FileFinderObject FindFile(MyFile file) // ERROR
+        {
+            List<MyFile> files = db.Files.ToList();
+
+            int many = files.Select(f => f.name.Equals(file.name) && f.size == file.size && f.description.Equals(file.description)).Count();
+           
+            return  new FileFinderObject { size = file.size, ManyUser = many };
         }
     }
 }

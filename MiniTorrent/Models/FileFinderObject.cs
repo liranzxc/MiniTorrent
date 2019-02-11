@@ -7,7 +7,7 @@ namespace MiniTorrent.Models
 {
     public class FileFinderObject
     {
-        public int size { get; set; }
+        public double size { get; set; }
         public int ManyUser { get; set; }
 
         public User user { get; set; }

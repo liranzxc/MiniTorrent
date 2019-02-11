@@ -17,10 +17,15 @@ namespace MiniTorrent.Models
     
         public MiniTorrentContext() : base("name=MiniTorrentContext")
         {
+            
         }
 
         public System.Data.Entity.DbSet<MiniTorrent.Models.Product> Products { get; set; }
 
         public System.Data.Entity.DbSet<MiniTorrent.Models.User> Users { get; set; }
+
+        public System.Data.Entity.DbSet<MiniTorrent.Models.MyFile> Files { get; set; }
+
+
     }
 }

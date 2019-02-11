@@ -17,14 +17,14 @@ namespace MiniTorrent.Controllers
 
         [ActionName("SignIn")]
         [HttpPost]
-        public IHttpActionResult SignIn([FromBody] User user)
+        public IHttpActionResult SignIn([FromBody] User_lst_Files user_lst_files)
         {
-            if(fileservice.Valid(user.username, user.password))
+            if(fileservice.Valid(user_lst_files.User.username, user_lst_files.User.password))
             {
-                fileservice.UpdateListFiles(user.username, user.password, user.lstFiles);
-                fileservice.SignIn(user.username, user.password);
+                fileservice.UpdateListFiles(user_lst_files.User.username, user_lst_files.User.password, user_lst_files.lstFiles);
+                fileservice.SignIn(user_lst_files.User.username, user_lst_files.User.password);
                 // add user to database ! admin service 
-                    return Ok(user.username + " Log in ");
+                    return Ok(user_lst_files.User.username + " Log in ");
             }
             else
             {

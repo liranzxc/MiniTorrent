@@ -15,9 +15,10 @@ namespace MiniTorrent.Controllers
     public class AdminsController : ApiController
     {
         private MiniTorrentContext db = new MiniTorrentContext();
-
+        
         // GET: api/Admins
         [ActionName("users")]
+        [HttpGet]
         public IQueryable<User> GetUsers()
         {
             return db.Users;
@@ -26,6 +27,7 @@ namespace MiniTorrent.Controllers
         // GET: api/Admins/5
         [ActionName("user")]
         [ResponseType(typeof(User))]
+        [HttpGet]
         public IHttpActionResult GetUser(int id)
         {
             User user = db.Users.Find(id);
@@ -37,61 +39,38 @@ namespace MiniTorrent.Controllers
             return Ok(user);
         }
 
-        // PUT: api/Admins/5
-        [ActionName("update")]
-        [ResponseType(typeof(void))]
-        public IHttpActionResult RegisterUser(int id, User user)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != user.Id)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(user).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!UserExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
+        
         // POST: api/Admins
         [ActionName("register")]
         [ResponseType(typeof(User))]
-        public IHttpActionResult PostUser(User user)
+        [HttpPost]
+        public IHttpActionResult PostUser(User_lst_Files user_lst_files)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user);
+            db.Users.Add(user_lst_files.User);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            user_lst_files.lstFiles.ForEach(file => {
+
+            file.IdUser = user_lst_files.User.Id;
+
+            db.Files.Add(file);
+
+            });
+            db.SaveChanges();
+
+            
+            return CreatedAtRoute("DefaultApi", new { id = user_lst_files.User.Id }, user_lst_files.User);
         }
 
         // DELETE: api/Admins/5
         [ActionName("delete")]
         [ResponseType(typeof(User))]
+        [HttpDelete]
         public IHttpActionResult DeleteUser(int id)
         {
             User user = db.Users.Find(id);
@@ -99,6 +78,9 @@ namespace MiniTorrent.Controllers
             {
                 return NotFound();
             }
+
+            db.Files.ToList().Where(file => file.IdUser == id).ToList()
+                .ForEach(f => db.Files.Remove(f));
 
             db.Users.Remove(user);
             db.SaveChanges();
@@ -111,70 +93,79 @@ namespace MiniTorrent.Controllers
         [HttpGet]
         public List<MyFile> ShowAllFiles()
         {
-            var Files = db.Users.ToList().SelectMany(i => i.lstFiles).ToList();
+            var Files = db.Files.ToList();
 
             return Files;
 
-            //for (int i=0;i<db.Users.Count();i++)
-            //{
-                
-            //    for (int j = 0; i < db.Users.ElementAt(i).lstFiles.Count(); j++)
-            //    {
-            //        files.Add(db.Users.ElementAt(i).lstFiles.ElementAt(j));
-            //    }
-
-
-            //}
-
-            //return Ok(files);
+           
         }
         [ActionName("activeUsers")]
-        public IHttpActionResult ShowAllActiveUsers()
+        [HttpGet]
+        public List<User> ShowAllActiveUsers()
         {
-            var activeUsers = db.Users.ToList().Select(i => i.active == true);
-            return Ok(activeUsers);
+            var activeUsers = db.Users.ToList().Where(i => i.active == true).ToList();
+            return activeUsers;
 
-            //List<User> users = new List<User>();
-            //for (int i = 0; i < db.Users.Count(); i++)
-            //{
-            //    if (db.Users.ElementAt(i).active==true)
-            //    {
-            //        users.Add(db.Users.ElementAt(i));
-            //    }
 
-            //}
 
-            //return Ok(users);
         }
-        [ActionName("disable")]
-        public IHttpActionResult disableUser(int id)
-        {
-            db.Users.ElementAt(id).active = false;
-            return Ok();
-        }
-        [ActionName("enable")]
-        public IHttpActionResult enableUser(int id)
-        {
-            db.Users.ElementAt(id).active = true;
-            return Ok();
-        }
+       
         [ActionName("updateusername")]
+        [HttpPut]
         public IHttpActionResult UpdateUserName(int id,string username)
         {
-            db.Users.ElementAt(id).username = username;
-            return Ok();
+            if (UserExists(id))
+            {
+                User user = db.Users.Find(id);
+                user.username = username;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+
+                return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         [ActionName("updatepassword")]
+        [HttpPut]
         public IHttpActionResult UpdatePassword(int id, string password)
         {
-            db.Users.ElementAt(id).password = password;
-            return Ok();
+            if (UserExists(id))
+            {
+                User user = db.Users.Find(id);
+                user.password = password;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
         [ActionName("updatestatus")]
-        public IHttpActionResult UpdateStatus(int id, Boolean status)
+        [HttpPut]
+        public IHttpActionResult UpdateStatus(int id, Boolean active)
         {
-            db.Users.ElementAt(id).active = status;
-            return Ok();
+            if (UserExists(id))
+            {
+                User user = db.Users.Find(id);
+                user.active = active;
+                db.Entry(user).State = EntityState.Modified;
+                db.SaveChanges();
+
+
+
+                return CreatedAtRoute("DefaultApi", new { id = user.Id }, user);
+            }
+            else
+            {
+                return BadRequest();
+            }
+
+
         }
         protected override void Dispose(bool disposing)
         {
@@ -189,5 +180,7 @@ namespace MiniTorrent.Controllers
         {
             return db.Users.Count(e => e.Id == id) > 0;
         }
+
+        
     }
 }

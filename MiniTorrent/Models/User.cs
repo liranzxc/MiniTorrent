@@ -19,7 +19,7 @@ namespace MiniTorrent.Models
         public string PublicPath { get; set; }
         public string DownloadPath { get; set; }
         public Boolean active { get; set; }
-        public List<MyFile> lstFiles { get; set; }
+      
 
     }
 }
