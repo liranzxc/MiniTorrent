@@ -17,12 +17,14 @@ namespace MiniTorrent.Controllers
         private MiniTorrentContext db = new MiniTorrentContext();
 
         // GET: api/Admins
+        [ActionName("users")]
         public IQueryable<User> GetUsers()
         {
             return db.Users;
         }
 
         // GET: api/Admins/5
+        [ActionName("user")]
         [ResponseType(typeof(User))]
         public IHttpActionResult GetUser(int id)
         {
@@ -36,6 +38,7 @@ namespace MiniTorrent.Controllers
         }
 
         // PUT: api/Admins/5
+        [ActionName("update")]
         [ResponseType(typeof(void))]
         public IHttpActionResult RegisterUser(int id, User user)
         {
@@ -71,6 +74,7 @@ namespace MiniTorrent.Controllers
         }
 
         // POST: api/Admins
+        [ActionName("register")]
         [ResponseType(typeof(User))]
         public IHttpActionResult PostUser(User user)
         {
@@ -86,6 +90,7 @@ namespace MiniTorrent.Controllers
         }
 
         // DELETE: api/Admins/5
+        [ActionName("delete")]
         [ResponseType(typeof(User))]
         public IHttpActionResult DeleteUser(int id)
         {
@@ -100,6 +105,8 @@ namespace MiniTorrent.Controllers
 
             return Ok(user);
         }
+
+        [ActionName("Files")]
         public IHttpActionResult ShowAllFiles()
         {
             var Files = db.Users.ToList().SelectMany(i => i.lstFiles).ToList();
@@ -119,6 +126,7 @@ namespace MiniTorrent.Controllers
 
             //return Ok(files);
         }
+        [ActionName("activeUsers")]
         public IHttpActionResult ShowAllActiveUsers()
         {
             var activeUsers = db.Users.ToList().Select(i => i.active == true);
@@ -136,26 +144,31 @@ namespace MiniTorrent.Controllers
 
             //return Ok(users);
         }
+        [ActionName("disable")]
         public IHttpActionResult disableUser(int id)
         {
             db.Users.ElementAt(id).active = false;
             return Ok();
         }
+        [ActionName("enable")]
         public IHttpActionResult enableUser(int id)
         {
             db.Users.ElementAt(id).active = true;
             return Ok();
         }
+        [ActionName("updateusername")]
         public IHttpActionResult UpdateUserName(int id,string username)
         {
             db.Users.ElementAt(id).username = username;
             return Ok();
         }
+        [ActionName("updatepassword")]
         public IHttpActionResult UpdatePassword(int id, string password)
         {
             db.Users.ElementAt(id).password = password;
             return Ok();
         }
+        [ActionName("updatestatus")]
         public IHttpActionResult UpdateStatus(int id, Boolean status)
         {
             db.Users.ElementAt(id).active = status;
@@ -169,7 +182,7 @@ namespace MiniTorrent.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [ActionName("exists")]
         private bool UserExists(int id)
         {
             return db.Users.Count(e => e.Id == id) > 0;
