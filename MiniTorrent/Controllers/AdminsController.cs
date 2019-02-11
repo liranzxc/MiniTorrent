@@ -107,11 +107,13 @@ namespace MiniTorrent.Controllers
         }
 
         [ActionName("Files")]
-        public IHttpActionResult ShowAllFiles()
+        [ResponseType(typeof(MyFile))]
+        [HttpGet]
+        public List<MyFile> ShowAllFiles()
         {
             var Files = db.Users.ToList().SelectMany(i => i.lstFiles).ToList();
 
-            return Ok(Files);
+            return Files;
 
             //for (int i=0;i<db.Users.Count();i++)
             //{
