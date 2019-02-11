@@ -121,17 +121,20 @@ namespace MiniTorrent.Controllers
         }
         public IHttpActionResult ShowAllActiveUsers()
         {
-            List<User> users = new List<User>();
-            for (int i = 0; i < db.Users.Count(); i++)
-            {
-                if (db.Users.ElementAt(i).active==true)
-                {
-                    users.Add(db.Users.ElementAt(i));
-                }
+            var activeUsers = db.Users.ToList().Select(i => i.active == true);
+            return Ok(activeUsers);
 
-            }
+            //List<User> users = new List<User>();
+            //for (int i = 0; i < db.Users.Count(); i++)
+            //{
+            //    if (db.Users.ElementAt(i).active==true)
+            //    {
+            //        users.Add(db.Users.ElementAt(i));
+            //    }
 
-            return Ok(users);
+            //}
+
+            //return Ok(users);
         }
         public IHttpActionResult disableUser(int id)
         {
