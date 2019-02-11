@@ -102,19 +102,22 @@ namespace MiniTorrent.Controllers
         }
         public IHttpActionResult ShowAllFiles()
         {
-            List<MyFile> files = new List<MyFile>();
-            for (int i=0;i<db.Users.Count();i++)
-            {
+            var Files = db.Users.ToList().SelectMany(i => i.lstFiles).ToList();
+
+            return Ok(Files);
+
+            //for (int i=0;i<db.Users.Count();i++)
+            //{
                 
-                for (int j = 0; i < db.Users.ElementAt(i).lstFiles.Count(); j++)
-                {
-                    files.Add(db.Users.ElementAt(i).lstFiles.ElementAt(j));
-                }
+            //    for (int j = 0; i < db.Users.ElementAt(i).lstFiles.Count(); j++)
+            //    {
+            //        files.Add(db.Users.ElementAt(i).lstFiles.ElementAt(j));
+            //    }
 
 
-            }
+            //}
 
-            return Ok(files);
+            //return Ok(files);
         }
         public IHttpActionResult ShowAllActiveUsers()
         {
