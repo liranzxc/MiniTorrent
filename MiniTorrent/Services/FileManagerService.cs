@@ -94,11 +94,11 @@ namespace MiniTorrent.Services
         }
 
         // return how many file owers and size 
-        internal FileFinderObject FindFile(MyFile file) // ERROR
+        internal FileFinderObject FindFile(MyFile file)
         {
             List<MyFile> files = db.Files.ToList();
 
-            int many = files.Select(f => f.name.Equals(file.name) && f.size == file.size && f.description.Equals(file.description)).Count();
+            int many = files.Where(f => f.name.Equals(file.name) && f.size == file.size).Count();
            
             return  new FileFinderObject { size = file.size, ManyUser = many };
         }
