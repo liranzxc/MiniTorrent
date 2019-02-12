@@ -119,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AdminView.aspx" />
+    <Content Include="Register.aspx" />
     <Content Include="UpdatePassword.aspx" />
     <Content Include="UpdateStatus.aspx" />
     <Content Include="Global.asax" />
@@ -140,6 +141,13 @@
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\MeddleController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UpdatePassword.aspx.cs">
       <DependentUpon>UpdatePassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

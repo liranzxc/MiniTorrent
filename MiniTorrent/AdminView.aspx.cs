@@ -16,7 +16,7 @@ namespace MiniTorrent
         {
             adminController = new AdminsController();
             List<MyFile> files = adminController.ShowAllFiles();
-            lblAllFiles.Text = files.Count().ToString();
+            lblFiles.Text = files.Count().ToString();
             List<User> users = adminController.ShowAllActiveUsers();
             lblActiveUsers.Text = users.Count().ToString();
         }
