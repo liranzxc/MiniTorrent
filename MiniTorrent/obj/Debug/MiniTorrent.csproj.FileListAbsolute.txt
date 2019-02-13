@@ -183,3 +183,4 @@ E:\Afeka\Torrent\MiniTorrent\MiniTorrent\obj\Debug\MiniTorrent.csproj.CoreCompil
 E:\Afeka\Torrent\MiniTorrent\MiniTorrent\obj\Debug\MiniTorrent.csproj.CopyComplete
 E:\Afeka\Torrent\MiniTorrent\MiniTorrent\obj\Debug\MiniTorrent.dll
 E:\Afeka\Torrent\MiniTorrent\MiniTorrent\obj\Debug\MiniTorrent.pdb
+E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrent\obj\Debug\MiniTorrent.csprojAssemblyReference.cache
