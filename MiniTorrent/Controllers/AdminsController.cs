@@ -44,28 +44,22 @@ namespace MiniTorrent.Controllers
         [ActionName("register")]
         [ResponseType(typeof(User))]
         [HttpPost]
-        public IHttpActionResult PostUser(User_lst_Files user_lst_files)
+        public IHttpActionResult PostUser([FromBody]User user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Users.Add(user_lst_files.User);
+            db.Users.Add(user);
             db.SaveChanges();
 
-
-            user_lst_files.lstFiles.ForEach(file => {
-
-            file.IdUser = user_lst_files.User.Id;
-
-            db.Files.Add(file);
-
-            });
-            db.SaveChanges();
 
             
-            return CreatedAtRoute("DefaultApi", new { id = user_lst_files.User.Id }, user_lst_files.User);
+            db.SaveChanges();
+
+            return Ok("Register good !");
+           // return CreatedAtRoute("DefaultApi", new { id = user.Id });
         }
 
         // DELETE: api/Admins/5

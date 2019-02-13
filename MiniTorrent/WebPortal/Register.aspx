@@ -33,6 +33,7 @@
             <h1 class="h3 mb-3 font-weight-normal">Register to our Torrent !!</h1>
         </div>
 
+        <div class="container">
         <div class="form-label-group">
             <label for="inputusername">Username</label>
             <input type="text" id="inputusername" class="form-control" placeholder="Username" required autofocus>
@@ -44,69 +45,54 @@
         </div>
 
         <div class="form-label-group">
-            <label for="publicpath">Public Path</label>
-            <input id="publicpath" type="file" webkitdirectory directory multiple required />
-
+            <label for="ip">IP</label>
+            <asp:Label runat="server" type="text" ID="ip" class="form-control"></asp:Label>
         </div>
 
         <div class="form-label-group">
-            <label for="DownloadPath">Download path</label>
-            <input id="DownloadPath" type="file" webkitdirectory directory multiple required />
+           <label for="port">Port</label>
+            <asp:Label runat="server" type="text" ID="port" class="form-control"></asp:Label>
+
 
         </div>
+
 
 
         <button class="btn btn-lg btn-primary btn-block" type="submit">Join now !</button>
         <p class="mt-5 mb-3 text-muted text-center">&copy; 2017-2019</p>
 
 
+            </div>
     </form>
 
     <script>
         $("#form1").submit(function (e) {
 
-            // public path
-            var publicDir = $('#publicpath');
-
-            var files = publicDir[0]['files'];
-
-            var jsonFile = []; // list of flies 
-
-            $.each(files, function (index, value) {
-
-                jsonFile.push({ "name": value['name'], "size": value['size'], "description": value['type'] });
-
-            });
-
-
+         
             // username and password
-            var password = $('inputPassword').val();
-            var username = $('inputusername').val();
+            var password = $('#inputPassword').val();
+            var username = $('#inputusername').val();
 
+            var ip = $('#ip').text();
+            var port = $('#port').text();
 
-            // download path
-            var DownloadDir = $('#DownloadPath');
+            console.log(password, username, ip, port);
 
-            console.log(DownloadDir);
-
-
+           
 
             var form = $(this);
             var url = "/api/Admins/register";
-            var mydata = {
-                "User": { "password": password, "username": username , "IP": ip , "port" : port },
+            var mydata =
+                { "password": password, "username": username, "IP": ip, "port": port };
 
-                "lstFiles": jsonFile
-
-            };
-
-
+        
             $.ajax({
                 type: "POST",
                 url: url,
                 data: mydata, // serializes the form's elements.
                 success: function (data) {
-                    console.log(data); // show response from the php script.
+                    alert("Register Successfully ,please upload to share folder !")
+                    //console.log(data); // show response from the php script.
                 }
             });
 
