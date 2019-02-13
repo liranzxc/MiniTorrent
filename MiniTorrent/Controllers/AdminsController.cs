@@ -54,6 +54,7 @@ namespace MiniTorrent.Controllers
             db.Users.Add(user_lst_files.User);
             db.SaveChanges();
 
+
             user_lst_files.lstFiles.ForEach(file => {
 
             file.IdUser = user_lst_files.User.Id;

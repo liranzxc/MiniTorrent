@@ -66,6 +66,8 @@ namespace MiniTorrent.Controllers
         public IHttpActionResult SignOut([FromBody] User user)
         {
             fileservice.SignOut(user.username, user.password);
+            // remove all files of him 
+
             return Ok(user.username + "Log Out");
         }
 

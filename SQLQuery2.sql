@@ -1,0 +1,3 @@
+﻿DELETE FROM [Users] WHERE [Id] = @original_Id AND (([username] = @original_username) OR ([username] IS NULL AND @original_username IS NULL)) AND (([password] = @original_password) OR ([password] IS NULL AND @original_password IS NULL)) AND (([IP] = @original_IP) OR ([IP] IS NULL AND @original_IP IS NULL)) AND [port] = @original_port AND (([PublicPath] = @original_PublicPath) OR ([PublicPath] IS NULL AND @original_PublicPath IS NULL)) AND (([DownloadPath] = @original_DownloadPath) OR ([DownloadPath] IS NULL AND @original_DownloadPath IS NULL)) AND [active] = @original_active;
+
+DELETE FROM [MyFiles] WHERE [IdUser] = @original_Id 
