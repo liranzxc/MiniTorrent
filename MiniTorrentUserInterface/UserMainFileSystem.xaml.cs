@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using MiniTorrent;
+using MiniTorrent.Controllers;
 using MiniTorrent.Models;
 using MiniTorrent.Services;
 
@@ -36,8 +37,8 @@ namespace MiniTorrentUserInterface
             FileManagerService service = new FileManagerService();
             List<MyFile> mySearch = service.FindFile(tbName.Text.Trim());
             dtGrid.ItemsSource = mySearch;
-           
-            
+
+
 
         }
 
@@ -51,16 +52,40 @@ namespace MiniTorrentUserInterface
 
                     MyFile toDownload = (MyFile)dtGrid.SelectedItem;
                     MessageBox.Show(toDownload.name);
-                    OpenFileDialog sfd = new OpenFileDialog();
-                    if (sfd.ShowDialog() == DialogResult)
+
+                    OpenFileDialog folderBrowser = new OpenFileDialog();
+                    // Set validate names and check file exists to false otherwise windows will
+                    // not let you select "Folder Selection."
+                    folderBrowser.ValidateNames = false;
+                    folderBrowser.CheckFileExists = false;
+                    folderBrowser.CheckPathExists = true;
+                    // Always default to Folder Selection.
+                    folderBrowser.FileName = "";
+                    if (folderBrowser.ShowDialog() == true)
                     {
+                        directortyPath = folderBrowser.FileName;
+                        using (AdminsController admincontroler  = new AdminsController() )
+                        {
+
+                            User UploadUser = admincontroler.GetUser(toDownload.IdUser);
+                            if(UploadUser != null)
+                            {
+                               
+                            }
+
+                        }
+                          
+
 
                     }
-                catch
-                {
-                    
                 }
-                
+
+
+                catch (Exception)
+                {
+
+                }
+
             }
         }
     }

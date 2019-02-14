@@ -28,15 +28,15 @@ namespace MiniTorrent.Controllers
         [ActionName("user")]
         [ResponseType(typeof(User))]
         [HttpGet]
-        public IHttpActionResult GetUser(int id)
+        public User GetUser(int id)
         {
             User user = db.Users.Find(id);
             if (user == null)
             {
-                return NotFound();
+                return null;
             }
 
-            return Ok(user);
+            return user;
         }
 
         
