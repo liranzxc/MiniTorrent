@@ -12,19 +12,15 @@
     <form id="form1" runat="server">
         <div class="container">
 
-            <h2>File List Available 
-                
-            </h2>
-            <div>
-            <h3><asp:Label ID="Label1" runat="server" Text="Search by name"></asp:Label> </h3>
-            </div >
-            <div class="row">
-               
-                <asp:TextBox ID="txtSearch" runat="server" AutoPostBack="True" 
-                    ontextchanged="txtSearch_TextChanged" ></asp:TextBox>
-                <asp:Button ID="btnSearch" onclick="btnSearch_Click" runat="server" Text="Search Now" />
-                <asp:Button ID="btnClear" onclick="btnClear_Click" runat="server" Text="Clear" />
-            </div>
+            <h2>File List Available </h2>
+            <h3><asp:Label ID="Label1" runat="server" Text="Search by name"></asp:Label></h3>
+            <div class="row p-3">
+
+                <asp:TextBox ID ="txtSearch" runat="server" AutoPostBack="True" OnTextChanged="txtSearch_TextChanged"></asp:TextBox>
+                <asp:Button CssClass="btn btn-primary"  ID="btnSearch" OnClick="btnSearch_Click" runat="server" Text="Search Now" />
+                <asp:Button  CssClass="btn btn-warning" ID="btnClear" OnClick="btnClear_Click" runat="server" Text="Clear" />
+
+            
             <asp:GridView ID="GridView1" CssClass="table table-hover table-striped" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1">
                 <Columns>
                     <asp:BoundField DataField="Id" HeaderText="Id" InsertVisible="False" ReadOnly="True" SortExpression="Id" />
@@ -35,15 +31,16 @@
                 </Columns>
             </asp:GridView>
 
-
+            </div>
 
             <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:MiniTorrentContext %>" SelectCommand="SELECT        MyFiles.Id, MyFiles.name, MyFiles.size, MyFiles.description, MyFiles.IdUser
 FROM            MyFiles INNER JOIN
                          Users ON MyFiles.IdUser = Users.Id
-WHERE        (Users.active = 'true')" FilterExpression="name LIKE '%{0}%'">
-            <FilterParameters>
-            <asp:ControlParameter Name="name" ControlID="txtSearch" PropertyName="Text" />
-            </FilterParameters>
+WHERE        (Users.active = 'true')"
+                FilterExpression="name LIKE '%{0}%'">
+                <FilterParameters>
+                    <asp:ControlParameter Name="name" ControlID="txtSearch" PropertyName="Text" />
+                </FilterParameters>
             </asp:SqlDataSource>
 
             <h2>Active Users</h2>
