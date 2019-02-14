@@ -1,10 +1,15 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Web;
+using System.Web.Http;
 using System.Windows;
 using System.Windows.Controls;
 using MiniTorrent;
-
+using MiniTorrent.Controllers;
+using MiniTorrent.Models;
 
 namespace MiniTorrentUserInterface
 {
@@ -13,20 +18,69 @@ namespace MiniTorrentUserInterface
     /// </summary>
     public partial class MainWindow : Window
     {
+        protected string pathString = @"c:\Share_Folder";
+
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btRegister_Click(object sender, RoutedEventArgs e)
         {
-            
+            if (!Directory.Exists(pathString))
+            {
+                System.IO.Directory.CreateDirectory(pathString);
+
+                MessageBoxResult result = MessageBox.Show("Opening Sharing Folder In C Drive",
+                                           "Confirmation",
+                                           MessageBoxButton.OK,
+                                           MessageBoxImage.Exclamation);
+
+            }
+             Process.Start("http://localhost:31058/WebPortal/Register.aspx");
+
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btLogIn_Click(object sender, RoutedEventArgs e)
         {
-          
+            FilesController fc = new FilesController();
+            User loggedIn = new User
+            {
+                username = tbUserName.Text,
+                password = tbPassword.Text
+            };
+            List<MyFile> filesInSharingFolder=new List<MyFile>();
+            string[] fileEntries = Directory.GetFiles(pathString);
+            foreach (var f in fileEntries)
+            {
+                FileInfo info = new FileInfo(f);
+                filesInSharingFolder.Add(new MyFile
+                {
+                    name = info.Name,
+                    size = info.Length,
+                    description = info.CreationTime.ToShortTimeString()
+                });
+            }
+            User_lst_Files userAndFiles = new User_lst_Files
+            {
+                User = loggedIn,
+                lstFiles = filesInSharingFolder
 
+            };
+            HttpResponseMessage actionResult=fc.SignIn(userAndFiles);
+            if (actionResult.IsSuccessStatusCode)
+            {
+                UserMainFileSystem MainUserPage = new UserMainFileSystem();
+                MainUserPage.Show();
+                this.Close();
+            }
+            else
+            {
+                 MessageBox.Show(actionResult.Content.ToString(),
+                                           "Error",
+                                           MessageBoxButton.OK,
+                                           MessageBoxImage.Exclamation);
+            }
         }
     }
 }

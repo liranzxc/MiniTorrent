@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MiniTorrent;
 
 namespace MiniTorrentUserInterface
 {
@@ -19,11 +20,26 @@ namespace MiniTorrentUserInterface
     /// </summary>
     public partial class UserMainFileSystem : Window
     {
+
         public UserMainFileSystem()
         {
             InitializeComponent();
+            DataGridTextColumn NameColum = new DataGridTextColumn();
+            DataGridTextColumn SizeColum = new DataGridTextColumn();
+            DataGridTextColumn NumberOfResourceColum = new DataGridTextColumn();
+            NameColum.Header = "File Name";
+            SizeColum.Header = "File Size";
+            NumberOfResourceColum.Header = "Number Of Active Resources";
+            dtGrid.Columns.Add(NameColum);
+            dtGrid.Columns.Add(SizeColum);
+            dtGrid.Columns.Add(NumberOfResourceColum);
         }
 
-       
+        private void btSearch_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+    
     }
 }

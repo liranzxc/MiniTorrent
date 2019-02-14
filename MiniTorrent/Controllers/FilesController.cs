@@ -17,18 +17,21 @@ namespace MiniTorrent.Controllers
 
         [ActionName("SignIn")]
         [HttpPost]
-        public IHttpActionResult SignIn([FromBody] User_lst_Files user_lst_files)
+        public HttpResponseMessage SignIn([FromBody] User_lst_Files user_lst_files)
         {
             if(fileservice.Valid(user_lst_files.User.username, user_lst_files.User.password))
             {
                 fileservice.UpdateListFiles(user_lst_files.User.username, user_lst_files.User.password, user_lst_files.lstFiles);
                 fileservice.SignIn(user_lst_files.User.username, user_lst_files.User.password);
-                // add user to database ! admin service 
-                    return Ok(user_lst_files.User.username + " Log in ");
+                // add user to database ! admin service
+                HttpResponseMessage message = Request.CreateResponse(HttpStatusCode.OK, "Logged In Successfully");
+                return message;
             }
             else
             {
-                return BadRequest("unvalid username");
+                HttpResponseMessage message = Request.CreateResponse(HttpStatusCode.BadRequest, "Unveilid Details");
+
+                return message;
 
             }
         }
