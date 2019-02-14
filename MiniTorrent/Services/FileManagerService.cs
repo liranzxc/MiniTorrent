@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
+using System.Net.Sockets;
 using System.Web;
 using MiniTorrent.Models;
 
@@ -23,13 +25,25 @@ namespace MiniTorrent.Services
                 .Count() > 0);      
             
         }
-
+        public static string GetLocalIPAddress()
+        {
+            var host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (var ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            throw new Exception("No network adapters with an IPv4 address in the system!");
+        }
 
         internal bool UpdateStatus(string username,string password, Boolean active)
         {
 
            User user = GetUser(username, password);
            user.active = active;
+           user.IP = GetLocalIPAddress();
            db.Entry(user).State = EntityState.Modified;
            db.SaveChanges();
 
