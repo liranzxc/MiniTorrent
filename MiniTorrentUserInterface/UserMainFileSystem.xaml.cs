@@ -30,6 +30,7 @@ namespace MiniTorrentUserInterface
         {
             InitializeComponent();
             tbName.Text = "";
+            new UploadRequestHandler(); // Create New Task from request files
 
         }
 
@@ -45,7 +46,7 @@ namespace MiniTorrentUserInterface
 
         private void BtDownload_Click_1(object sender, RoutedEventArgs e)
         {
-            string directortyPath;
+            string downloadpath;
             if (dtGrid.SelectedCells.Count > 0)
             {
                 try
@@ -64,14 +65,28 @@ namespace MiniTorrentUserInterface
                     folderBrowser.FileName = "";
                     if (folderBrowser.ShowDialog() == true)
                     {
-                        directortyPath = folderBrowser.FileName;
+                        downloadpath = folderBrowser.FileName;
                         using (AdminsController admincontroler  = new AdminsController() )
                         {
 
                             User UploadUser = admincontroler.GetUser(toDownload.IdUser);
                             if(UploadUser != null)
                             {
-                               
+                                // continue
+
+                                //download path =  downloadpath
+                                // uploadUser
+                                //toDownload.name == namefile
+                                // TODO : open socket client ! 
+
+                                GetFileFromUser(UploadUser, toDownload.name, downloadpath);
+                                
+
+
+
+
+
+
                             }
 
                         }
@@ -88,6 +103,12 @@ namespace MiniTorrentUserInterface
                 }
 
             }
+        }
+
+        private void GetFileFromUser(User uploadUser, string namefile,String DownloadPath)
+        {
+            DownloadRequest handlerDownload = new DownloadRequest(uploadUser,namefile, DownloadPath);
+            
         }
     }
 }

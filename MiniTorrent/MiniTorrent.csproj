@@ -176,6 +176,10 @@
     <Compile Include="Controllers\FilesController.cs" />
     <Compile Include="Controllers\MeddleController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Models\DownloadRequest.cs" />
+    <Compile Include="Models\UploadRequestHandler.cs" />
+    <Compile Include="Models\SocketListener.cs" />
+    <Compile Include="Models\DownloadHandlerClient.cs" />
     <Compile Include="WebPortal\Explorer.aspx.cs">
       <DependentUpon>Explorer.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
