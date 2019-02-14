@@ -18,15 +18,17 @@ namespace MiniTorrentUserInterface
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void btRegister_Click(object sender, RoutedEventArgs e)
         {
-            
+
+            Process.Start("http://localhost:31058/WebPortal/Register.aspx");
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void btLogIn_Click(object sender, RoutedEventArgs e)
         {
-          
-
+            UserMainFileSystem user = new UserMainFileSystem();
+            user.Show();
+            this.Close();
         }
     }
 }
