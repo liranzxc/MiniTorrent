@@ -17,7 +17,6 @@ E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\MiniTorrentUs
 E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\MiniTorrent.dll
 E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\MiniTorrent.Tests.dll
 E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
-E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\System.Web.Http.dll
 E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\EntityFramework.dll
 E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\System.Web.Http.WebHost.dll
 E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\System.Net.Http.Formatting.dll

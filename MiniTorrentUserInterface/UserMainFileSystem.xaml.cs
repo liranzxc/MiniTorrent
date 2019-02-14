@@ -23,7 +23,6 @@ namespace MiniTorrentUserInterface
 
         public UserMainFileSystem()
         {
-            btDownload.Visibility = 0;
             InitializeComponent();
             DataGridTextColumn NameColum = new DataGridTextColumn();
             DataGridTextColumn SizeColum = new DataGridTextColumn();
