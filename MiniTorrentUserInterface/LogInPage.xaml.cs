@@ -23,6 +23,8 @@ namespace MiniTorrentUserInterface
         public MainWindow()
         {
             InitializeComponent();
+            tbUserName.Text = "";
+            tbPassword.Text = "";
         }
 
         private void btRegister_Click(object sender, RoutedEventArgs e)

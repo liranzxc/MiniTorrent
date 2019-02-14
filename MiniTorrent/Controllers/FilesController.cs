@@ -45,29 +45,21 @@ namespace MiniTorrent.Controllers
         }
 
         [ActionName("FindFile")]
-        [HttpPost]
-        public IHttpActionResult FindFile([FromBody] FileFinderObject args)
+        public List<MyFile> FindFile([FromBody] FileFinderObject args)
         {
-           
+
             if (fileservice.Valid(args.user.username, args.user.password))
             {
 
-                FileFinderObject Data = fileservice.FindFile(args.file); // Data : { size : ?? , How many users : ??}
+                List<MyFile> Data = fileservice.FindFile(args.file.name); // Data : { size : ?? , How many users : ??}
 
-                if(Data.ManyUser > 0 )
-                {
-                    return Ok(Data);
-                }
-                else
-                {
-                    return BadRequest("File not found");
-                }
-             
+
+                return Data;
+
             }
             else
             {
-                return BadRequest("unvalid username");
-
+                throw new NullReferenceException();
             }
         }
 
