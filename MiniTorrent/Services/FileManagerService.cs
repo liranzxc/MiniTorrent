@@ -19,7 +19,7 @@ namespace MiniTorrent.Services
             List<User> users = db.Users.ToList();
 
             return (users
-                .Select(user => user.username == username && user.password == password)
+                .Where(user => user.username.Equals(username) && user.password.Equals(password))
                 .Count() > 0);      
             
         }

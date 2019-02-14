@@ -24,12 +24,20 @@ namespace MiniTorrent.Controllers
                 fileservice.UpdateListFiles(user_lst_files.User.username, user_lst_files.User.password, user_lst_files.lstFiles);
                 fileservice.SignIn(user_lst_files.User.username, user_lst_files.User.password);
                 // add user to database ! admin service
-                HttpResponseMessage message = Request.CreateResponse(HttpStatusCode.OK, "Logged In Successfully");
+                HttpResponseMessage message = new HttpResponseMessage();
+                message.Content = new StringContent("Logging Succefully");
+                
+
+
+ 
                 return message;
             }
             else
             {
-                HttpResponseMessage message = Request.CreateResponse(HttpStatusCode.BadRequest, "Unveilid Details");
+                HttpResponseMessage message = new HttpResponseMessage();
+                message.StatusCode = HttpStatusCode.BadRequest;
+                message.Content = new StringContent("BAD");
+
 
                 return message;
 

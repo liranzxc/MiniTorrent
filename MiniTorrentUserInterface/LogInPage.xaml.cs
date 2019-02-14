@@ -50,6 +50,7 @@ namespace MiniTorrentUserInterface
                 password = tbPassword.Text
             };
             List<MyFile> filesInSharingFolder=new List<MyFile>();
+
             string[] fileEntries = Directory.GetFiles(pathString);
             foreach (var f in fileEntries)
             {
@@ -76,7 +77,7 @@ namespace MiniTorrentUserInterface
             }
             else
             {
-                 MessageBox.Show(actionResult.Content.ToString(),
+                 MessageBox.Show("unvalid username ",
                                            "Error",
                                            MessageBoxButton.OK,
                                            MessageBoxImage.Exclamation);
