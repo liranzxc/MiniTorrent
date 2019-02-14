@@ -112,9 +112,10 @@ namespace MiniTorrent.Services
         {
             List<MyFile> files = db.Files.ToList();
             List<MyFile> SelectedNames = files.FindAll(f => f.name.Contains(name));
-
-
-            return SelectedNames;
+            
+            return SelectedNames.
+                FindAll(f => db.Users.Find(f.IdUser).active == true)
+                .ToList();
         }
        
     }
