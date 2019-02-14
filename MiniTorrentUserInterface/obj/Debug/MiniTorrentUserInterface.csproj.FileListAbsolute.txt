@@ -92,3 +92,5 @@ B:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\obj\Debug\MiniTorrentUserInt
 B:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\obj\Debug\MiniTorrentUserInterface.pdb
 B:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\EntityFramework.SqlServer.dll
 B:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\EntityFramework.SqlServer.xml
+E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\EntityFramework.SqlServer.dll
+E:\Afeka\C#\Torrent\MiniTorrent\MiniTorrentUserInterface\bin\Debug\EntityFramework.SqlServer.xml

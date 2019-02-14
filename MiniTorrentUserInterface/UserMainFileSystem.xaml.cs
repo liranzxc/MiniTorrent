@@ -11,7 +11,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
 using MiniTorrent;
+using MiniTorrent.Models;
+using MiniTorrent.Services;
 
 namespace MiniTorrentUserInterface
 {
@@ -24,22 +27,41 @@ namespace MiniTorrentUserInterface
         public UserMainFileSystem()
         {
             InitializeComponent();
-            DataGridTextColumn NameColum = new DataGridTextColumn();
-            DataGridTextColumn SizeColum = new DataGridTextColumn();
-            DataGridTextColumn NumberOfResourceColum = new DataGridTextColumn();
-            NameColum.Header = "File Name";
-            SizeColum.Header = "File Size";
-            NumberOfResourceColum.Header = "Number Of Active Resources";
-            dtGrid.Columns.Add(NameColum);
-            dtGrid.Columns.Add(SizeColum);
-            dtGrid.Columns.Add(NumberOfResourceColum);
+            tbName.Text = "";
+
         }
 
         private void btSearch_Click(object sender, RoutedEventArgs e)
         {
+            FileManagerService service = new FileManagerService();
+            List<MyFile> mySearch = service.FindFile(tbName.Text.Trim());
+            dtGrid.ItemsSource = mySearch;
+           
+            
 
         }
 
-    
+        private void BtDownload_Click_1(object sender, RoutedEventArgs e)
+        {
+            string directortyPath;
+            if (dtGrid.SelectedCells.Count > 0)
+            {
+                try
+                {
+
+                    MyFile toDownload = (MyFile)dtGrid.SelectedItem;
+                    MessageBox.Show(toDownload.name);
+                    OpenFileDialog sfd = new OpenFileDialog();
+                    if (sfd.ShowDialog() == DialogResult)
+                    {
+
+                    }
+                catch
+                {
+                    
+                }
+                
+            }
+        }
     }
 }
