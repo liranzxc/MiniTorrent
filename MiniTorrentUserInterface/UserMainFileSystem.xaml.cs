@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.UI.WebControls;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -25,9 +26,12 @@ namespace MiniTorrentUserInterface
     /// </summary>
     public partial class UserMainFileSystem : Window
     {
-
-        public UserMainFileSystem()
+        private string username;
+        private string password;
+        public UserMainFileSystem(string username, string password)
         {
+            this.username = username;
+            this.password = password;
             InitializeComponent();
             tbName.Text = "";
             new UploadRequestHandler(); // Create New Task from request files
@@ -109,6 +113,19 @@ namespace MiniTorrentUserInterface
         {
             DownloadRequest handlerDownload = new DownloadRequest(uploadUser,namefile, DownloadPath);
             
+        }
+
+        private void BtLogOut_Click(object sender, RoutedEventArgs e)
+        {
+            using (FilesController filescontroler = new FilesController())
+            {
+               
+                filescontroler.SignOut(new User { username = this.username, password = password });
+                this.Close();
+                MainWindow LoginPage = new MainWindow();
+                LoginPage.Show();
+            }
+
         }
     }
 }
