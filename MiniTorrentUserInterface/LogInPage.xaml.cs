@@ -27,7 +27,7 @@ namespace MiniTorrentUserInterface
             tbPassword.Text = "";
         }
 
-        private void btRegister_Click(object sender, RoutedEventArgs e)
+        private void BtRegister_Click(object sender, RoutedEventArgs e)
         {
             if (!Directory.Exists(pathString))
             {
@@ -73,7 +73,7 @@ namespace MiniTorrentUserInterface
             HttpResponseMessage actionResult=fc.SignIn(userAndFiles);
             if (actionResult.IsSuccessStatusCode)
             {
-                UserMainFileSystem MainUserPage = new UserMainFileSystem();
+                UserMainFileSystem MainUserPage = new UserMainFileSystem(tbUserName.Text,tbPassword.Text);
                 MainUserPage.Show();
                 this.Close();
             }
