@@ -73,7 +73,7 @@ namespace MiniTorrentUserInterface
             HttpResponseMessage actionResult=fc.SignIn(userAndFiles);
             if (actionResult.IsSuccessStatusCode)
             {
-                UserMainFileSystem MainUserPage = new UserMainFileSystem(tbUserName.Text,tbPassword);
+                UserMainFileSystem MainUserPage = new UserMainFileSystem(tbUserName.Text,tbPassword.Text);
                 MainUserPage.Show();
                 this.Close();
             }

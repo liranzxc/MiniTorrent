@@ -5,16 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MiniTorrentUserInterface"
         mc:Ignorable="d"
-        Title="UserMainFileSystem" Height="450" Width="800">
-    <Grid Height="420" Margin="0,0,-0.4,0" VerticalAlignment="Top" Background="#FFA9BCA8">
-        <Label x:Name="lblName" Content="Enter File Name: " HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="23" RenderTransformOrigin="0.437,1.207"/>
-        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="24" Margin="232,96,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="132" RenderTransformOrigin="0.597,1.07"/>
-        <Button x:Name="btSearch" Content="Search" HorizontalAlignment="Left" Margin="395,96,0,0" VerticalAlignment="Top" Width="87" Height="24" Click="btSearch_Click" RenderTransformOrigin="-0.199,0.559">
-        </Button>
-        <DataGrid Height="203" Width="794" HorizontalAlignment="Left" Margin="0,134,0,0"  Name="dtGrid" VerticalAlignment="Top" RowHeight="30" ColumnWidth="100" Background="#FF95ADCB" ></DataGrid>
-        <Button x:Name="btDownload" Content="Download" HorizontalAlignment="Left" Margin="506,96,0,0" VerticalAlignment="Top" Width="102" Click="BtDownload_Click_1" Height="24"/>
-        <Label  x:Name="lblHeadLine" Content="Home Page" HorizontalAlignment="Left" Margin="76,10,0,0" VerticalAlignment="Top" Height="46" Width="532" FontFamily="Aharoni" HorizontalContentAlignment="Center" FontSize="36"/>
-        <Button  x:Name="btLogOut" Content="Log Out" HorizontalAlignment="Left" Margin="636,96,0,0" VerticalAlignment="Top" Width="93" Height="24" RenderTransformOrigin="0.667,0.777" Click="BtLogOut_Click"/>
+        Title="UserMainFileSystem" Height="746.589" Width="1076.506">
+    <Grid Height="714" Margin="10,10,3,0" VerticalAlignment="Top" Background="#FFA9BCA8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="192*"/>
+            <ColumnDefinition Width="94*"/>
+            <ColumnDefinition Width="68*"/>
+            <ColumnDefinition Width="449*"/>
+            <ColumnDefinition Width="63*"/>
+            <ColumnDefinition Width="209*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblName" Content="Enter File Name: " HorizontalAlignment="Left" Margin="0,105,0,0" VerticalAlignment="Top" FontFamily="Arial Black" FontSize="18" RenderTransformOrigin="0.437,1.207" Height="30" Width="181"/>
+        <TextBox x:Name="tbName" HorizontalAlignment="Left" Height="24" Margin="67.6,105,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="132" RenderTransformOrigin="0.597,1.07" Grid.Column="2" Grid.ColumnSpan="2"/>
+        <Button x:Name="btSearch" Content="Search" HorizontalAlignment="Left" Margin="239.6,105,0,0" VerticalAlignment="Top" Width="87" Height="24" Click="btSearch_Click" RenderTransformOrigin="-0.199,0.559" Grid.Column="3"/>
+        <DataGrid Height="247" Width="1075" HorizontalAlignment="Left" Margin="0,199,0,0"  Name="dtGrid" VerticalAlignment="Top" RowHeight="30" ColumnWidth="100" Background="#FF95ADCB" Grid.ColumnSpan="6" />
+        <Button x:Name="btDownload" Content="Download" HorizontalAlignment="Left" Margin="417.6,105,0,0" VerticalAlignment="Top" Width="102" Click="BtDownload_Click_1" Height="24" Grid.Column="3" RenderTransformOrigin="1.5,1.221" Grid.ColumnSpan="3"/>
+        <Label  x:Name="lblHeadLine" Content="Home Page" HorizontalAlignment="Left" Margin="52,0,0,0" VerticalAlignment="Top" Height="46" Width="532" FontFamily="Aharoni" HorizontalContentAlignment="Center" FontSize="36" Grid.ColumnSpan="3" Grid.Column="1"/>
+        <Button  x:Name="btLogOut" Content="Log Out" HorizontalAlignment="Left" Margin="102.035,105,0,0" VerticalAlignment="Top" Width="95" Height="22" RenderTransformOrigin="0.667,0.777" Click="BtLogOut_Click" Grid.Column="5"/>
+        <Label x:Name="lblFileSearchHeadLine" Content="File Search Results" HorizontalAlignment="Left" Margin="0,162,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="2" Width="252" Height="37"/>
+        <Label  x:Name="lblDownloadedFile" Content="Downloads" HorizontalAlignment="Left" Margin="10,478,0,0" VerticalAlignment="Top" Height="41" Width="351" Grid.ColumnSpan="4" FontFamily="Aharoni" FontSize="22" FontWeight="Bold" FontStyle="Italic"/>
+        <DataGrid  Name="dtDownloadGrid" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="154" Margin="0,555,0,0" VerticalAlignment="Top" Width="1075" Background="#FF95ADCB" AutoGenerateColumns="False"/>
 
     </Grid>
 </Window>

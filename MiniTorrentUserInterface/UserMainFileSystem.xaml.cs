@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,6 +19,7 @@ using MiniTorrent;
 using MiniTorrent.Controllers;
 using MiniTorrent.Models;
 using MiniTorrent.Services;
+using DataGridColumn = System.Windows.Controls.DataGridColumn;
 
 namespace MiniTorrentUserInterface
 {
@@ -28,6 +30,7 @@ namespace MiniTorrentUserInterface
     {
         private string username;
         private string password;
+
         public UserMainFileSystem(string username, string password)
         {
             this.username = username;
@@ -35,16 +38,14 @@ namespace MiniTorrentUserInterface
             InitializeComponent();
             tbName.Text = "";
             new UploadRequestHandler(); // Create New Task from request files
-
+            
         }
-
+       
         private void btSearch_Click(object sender, RoutedEventArgs e)
         {
             FileManagerService service = new FileManagerService();
             List<MyFile> mySearch = service.FindFile(tbName.Text.Trim());
             dtGrid.ItemsSource = mySearch;
-
-
 
         }
 
@@ -59,7 +60,7 @@ namespace MiniTorrentUserInterface
                     MyFile toDownload = (MyFile)dtGrid.SelectedItem;
                     MessageBox.Show(toDownload.name);
 
-                    OpenFileDialog folderBrowser = new OpenFileDialog();
+                    SaveFileDialog folderBrowser = new SaveFileDialog();
                     // Set validate names and check file exists to false otherwise windows will
                     // not let you select "Folder Selection."
                     folderBrowser.ValidateNames = false;
@@ -83,18 +84,12 @@ namespace MiniTorrentUserInterface
                                 //toDownload.name == namefile
                                 // TODO : open socket client ! 
 
-                                GetFileFromUser(UploadUser, toDownload.name, downloadpath);
-                                
-
-
-
-
-
-
+                                GetFileFromUser(UploadUser, toDownload.name, downloadpath);                               
                             }
+                           
 
                         }
-                          
+
 
 
                     }
@@ -121,11 +116,13 @@ namespace MiniTorrentUserInterface
             {
                
                 filescontroler.SignOut(new User { username = this.username, password = password });
-                this.Close();
-                MainWindow LoginPage = new MainWindow();
-                LoginPage.Show();
+                
             }
-
+            MainWindow LoginPage = new MainWindow();
+            this.Close();
+            LoginPage.Show();
         }
+
+        
     }
 }
