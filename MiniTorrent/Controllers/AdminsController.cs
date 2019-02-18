@@ -16,11 +16,13 @@ namespace MiniTorrent.Controllers
     {
         private MiniTorrentContext db = new MiniTorrentContext();
         
+        
         // GET: api/Admins
         [ActionName("users")]
         [HttpGet]
         public IQueryable<User> GetUsers()
         {
+           
             return db.Users;
         }
 
