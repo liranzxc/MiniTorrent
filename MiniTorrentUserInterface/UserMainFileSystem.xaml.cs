@@ -51,6 +51,8 @@ namespace MiniTorrentUserInterface
 
         private void BtDownload_Click_1(object sender, RoutedEventArgs e)
         {
+            process.Value = 0;
+
             string downloadpath;
             if (dtGrid.SelectedCells.Count > 0)
             {
@@ -84,9 +86,12 @@ namespace MiniTorrentUserInterface
                                 //toDownload.name == namefile
                                 // TODO : open socket client ! 
 
-                                GetFileFromUser(UploadUser, toDownload.name, downloadpath);                               
+                                GetFileFromUser(UploadUser, toDownload.name, downloadpath);
+
+                                process.Value = 100;
+
                             }
-                           
+
 
                         }
 

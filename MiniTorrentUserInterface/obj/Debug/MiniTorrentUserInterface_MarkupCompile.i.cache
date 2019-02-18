@@ -4,17 +4,17 @@
 exe
 C#
 .cs
-B:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\obj\Debug\
+D:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\obj\Debug\
 MiniTorrentUserInterface
 none
 false
 DEBUG;TRACE
-B:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\App.xaml
+D:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\App.xaml
 2-77997097
 
 101827739622
-221673269828
+22-235963227
 LogInPage.xaml;UserMainFileSystem.xaml;
 
-True
+False
 

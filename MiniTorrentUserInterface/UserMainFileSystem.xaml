@@ -25,6 +25,7 @@
         <Label x:Name="lblFileSearchHeadLine" Content="File Search Results" HorizontalAlignment="Left" Margin="0,162,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="24" FontWeight="Bold" FontStyle="Italic" Grid.ColumnSpan="2" Width="252" Height="37"/>
         <Label  x:Name="lblDownloadedFile" Content="Downloads" HorizontalAlignment="Left" Margin="10,478,0,0" VerticalAlignment="Top" Height="41" Width="351" Grid.ColumnSpan="4" FontFamily="Aharoni" FontSize="22" FontWeight="Bold" FontStyle="Italic"/>
         <DataGrid  Name="dtDownloadGrid" Grid.ColumnSpan="6" HorizontalAlignment="Left" Height="154" Margin="0,555,0,0" VerticalAlignment="Top" Width="1075" Background="#FF95ADCB" AutoGenerateColumns="False"/>
+        <ProgressBar x:Name="process"   Grid.ColumnSpan="5" HorizontalAlignment="Left" Height="64" Margin="60,608,0,0" VerticalAlignment="Top" Width="782"/>
 
     </Grid>
 </Window>
