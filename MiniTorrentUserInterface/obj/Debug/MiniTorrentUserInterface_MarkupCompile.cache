@@ -4,20 +4,16 @@
 exe
 C#
 .cs
-D:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\obj\Debug\
+B:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\obj\Debug\
 MiniTorrentUserInterface
 none
 false
 DEBUG;TRACE
-D:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\App.xaml
+B:\MiniTorrent\MiniTorrent\MiniTorrentUserInterface\App.xaml
 2-77997097
 
 6-1657297345
-<<<<<<< HEAD
-221673269828
-=======
-22-235963227
->>>>>>> c11cbb7b1985fedebc58e70c1441b7a9b2f16075
+25816861122
 LogInPage.xaml;UserMainFileSystem.xaml;
 
 False

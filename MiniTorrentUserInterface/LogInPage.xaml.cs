@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Http;
 using System.Windows;
 using System.Windows.Controls;
+using MahApps.Metro.Controls;
 using MiniTorrent;
 using MiniTorrent.Controllers;
 using MiniTorrent.Models;
@@ -16,7 +17,7 @@ namespace MiniTorrentUserInterface
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : MetroWindow
     {
         protected string pathString = @"c:\Share_Folder";
 

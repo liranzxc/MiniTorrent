@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MahApps.Metro.Controls;
 using Microsoft.Win32;
 using MiniTorrent;
 using MiniTorrent.Controllers;
@@ -26,7 +27,7 @@ namespace MiniTorrentUserInterface
     /// <summary>
     /// Interaction logic for UserMainFileSystem.xaml
     /// </summary>
-    public partial class UserMainFileSystem : Window
+    public partial class UserMainFileSystem : MetroWindow
     {
         private string username;
         private string password;
@@ -60,7 +61,7 @@ namespace MiniTorrentUserInterface
                 {
 
                     MyFile toDownload = (MyFile)dtGrid.SelectedItem;
-                    MessageBox.Show(toDownload.name);
+                   
 
                     SaveFileDialog folderBrowser = new SaveFileDialog();
                     // Set validate names and check file exists to false otherwise windows will
@@ -89,6 +90,7 @@ namespace MiniTorrentUserInterface
                                 GetFileFromUser(UploadUser, toDownload.name, downloadpath);
 
                                 process.Value = 100;
+                                MessageBox.Show("Downloaded successfully " + toDownload.name);
 
                             }
 
